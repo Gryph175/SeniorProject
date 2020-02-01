@@ -21,7 +21,7 @@ rating = soup2.find(id = "acrPopover").get_text()
 
 title2 = soup4.find(id="productTitle").get_text()
 price2 = soup4.find(id="priceblock_ourprice").get_text()
-converted_price2 = float(price2[1:3])
+converted_price2 = float(price2[1:4])
 rating2 = soup4.find(id = "acrPopover").get_text()
 
 print(title.strip())
