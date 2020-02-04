@@ -6,8 +6,14 @@ URL2 = 'https://www.amazon.com/Fire-TV-Stick-with-Alexa-Voice-Remote/dp/B0791TX5
 
 headers = {"User-Agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36'}
 
-page1 = requests.get(URL, headers=headers)
-page2 = requests.get(URL2, headers=headers)
+def pageURL(URL):
+    page = requests.get(URL, headers=headers)
+    return (page)
+
+
+page1 = pageURL(URL)
+page2 = pageURL(URL2)
+
 
 def URLinput(page):
     soup1 = BeautifulSoup(page.content, 'html.parser')
