@@ -31,7 +31,7 @@ soup = URLinput(page1)
 
 def printInfo(item):
     results = soup.find_all('a', attrs={"class":"a-link-normal a-text-normal"})
-    return(results)
+    return(results)   
    
 print (URL)
 results = printInfo(soup)
