@@ -36,6 +36,26 @@ def printInfo(item):
 print (URL)
 results = printInfo(soup)
 file.write(str(results))
+file.close()
+file = open("WebURLs", "r")
+lines = file.readlines()
+file.close()
+file = open("WebURLs", "w")
+
+#looking for correct product URLs 
+
+for line in lines:
+    line = line.strip()
+    if line.find( "href=")!= -1:
+        if line.find("/gp/slredirect/picassoRedirect.html") == -1:
+            if line.find("http") == -1:
+                file.write(line + "\n")
+            
+
+
+ 
+
+
 
 
 
