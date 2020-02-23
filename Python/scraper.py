@@ -49,8 +49,11 @@ for line in lines:
     if line.find( "href=")!= -1:
         if line.find("/gp/slredirect/picassoRedirect.html") == -1:
             if line.find("http") == -1:
+                line = line.replace('</a>, <a class="a-link-normal a-text-normal" href="', '')
+                line = line.replace('">', '')
                 file.write(line + "\n")
-            
+file.close()
+
 
 
  
