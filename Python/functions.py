@@ -18,6 +18,7 @@ def URLinput(page):
     soup2 = BeautifulSoup(soup1.prettify(), 'html.parser')
     return(soup2)
 
-def printInfo(soup):
-    results = soup.find_all('a', attrs={"class":"a-link-normal a-text-normal"})
+def pageInfo(soup, ID):
+    results = soup.find_all('a', attrs={"class":ID})
     return(results) 
+

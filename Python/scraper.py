@@ -1,23 +1,18 @@
 import requests
 from bs4 import BeautifulSoup
-from functions import pageURL, itemInput, URLinput, printInfo
+from functions import pageURL, itemInput, URLinput, pageInfo
 
 amazonURL = "https://www.amazon.com/s?k="
-BestBuy = "https://www.bestbuy.ca/en-ca/search?search="
-NewEgg = "https://www.newegg.com/p/pl?d="
-Walmart = "https://www.walmart.com/search/?query=" 
-Target = "https://www.target.com/s?searchTerm="
-
+amazonID = "a-link-normal a-text-normal"
 
 file = open("WebURLs", "w")
 
 amazonURL = itemInput(amazonURL)
 amazonPage = pageURL(amazonURL)
 amazonSoup = URLinput(amazonPage)
-  
-   
+
 print (amazonURL)
-results = printInfo(amazonSoup)
+results = pageInfo(amazonSoup, amazonID) 
 file.write(str(results))
 file.close()
 file = open("WebURLs", "r")
@@ -32,6 +27,7 @@ for line in lines:
     if line.find( "href=")!= -1:
         if line.find("/gp/slredirect/picassoRedirect.html") == -1:
             if line.find("http") == -1:
+                line = line.replace('[<a class="a-link-normal a-text-normal" href="', 'https://www.amazon.com')
                 line = line.replace('</a>, <a class="a-link-normal a-text-normal" href="', 'https://www.amazon.com')
                 line = line.replace('">', '')
                 file.write(line + "\n")
