@@ -5,20 +5,18 @@ headers = {"User-Agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/
 
 def pageURL(URL):
     page = requests.get(URL, headers=headers)
-    return (page)
-
-def itemInput(URLinput):
-    item = input("Enter what product you would like to search for:")
-    item = item.replace(" ", "+")
-    URLinput = URLinput + item
-    return URLinput
-
-def URLinput(page):
     soup1 = BeautifulSoup(page.content, 'html.parser')
     soup2 = BeautifulSoup(soup1.prettify(), 'html.parser')
-    return(soup2)
+    return (soup2)
 
-def pageInfo(soup, ID):
-    results = soup.find_all('a', attrs={"class":ID})
+def scrapePrep(URL, ID, product):
+    #item = input("Enter what product you would like to search for:")
+    product = product.replace(" ", "+")
+    URL = URL + product
+    page = requests.get(URL, headers=headers)
+    soup1 = BeautifulSoup(page.content, 'html.parser')
+    soup2 = BeautifulSoup(soup1.prettify(), 'html.parser')
+    results = soup2.find_all('a', attrs={"class":ID})
     return(results) 
+
 
