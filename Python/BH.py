@@ -41,7 +41,7 @@ def BHscrape(product):
         price = price.replace(',', '')
         #rating = productSoup.find(class_="starContainer_K6YXTdn52hu9mzQ1MV43G")
 
-        print(title.strip())
+        #print(title.strip())
         #print(price.strip())
         #print(rating)
 

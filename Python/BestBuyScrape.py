@@ -45,12 +45,15 @@ def BestBuyScrape(product):
         price = price[1:priceln]
         price = price.replace(',', '')
         rating = productSoup.find('p', class_="sr-only").get_text()
+        if rating.find('Be the first') != -1:
+            rating = "0"
+        if rating.find('Not yet reviewed') != -1:
+            rating = '0'
         rating = rating.replace('Rating, ', '')
         rating = rating.replace('out', ' ')
         rating = rating.strip()
         rating = rating[0:3]
-        if rating.find('Be the first') != -1:
-            rating = "0"
+        
 
         file.write(title.strip() + '@')
         file.write(price.strip() + '@')
