@@ -53,17 +53,16 @@ def BestBuyScrape(product):
         rating = rating.replace('out', ' ')
         rating = rating.strip()
         rating = rating[0:3]
+        site = line
         
 
         file.write(title.strip() + '@')
         file.write(price.strip() + '@')
-        file.write(rating.strip() + '\n')
+        file.write(rating.strip() + '@')
+        file.write(site + '\n')
    
 
-    
-
-
-BestBuyScrape('cpu')        
+           
 
 
 

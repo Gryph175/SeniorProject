@@ -39,13 +39,23 @@ def runSort(sort):
         data.sort(key= prodRating, reverse=True)
 
 def printList():
+    file = open('Products', 'w')
     for j in range(0, len(data)):
         print('------------------------------------')
+        file.write('------------------------------------' + '\n')
         print(data[j][0])
+        file.write(str(data[j][0]) + '\n')
         print(data[j][1])
+        file.write(str(data[j][1]) + '\n')
         print(data[j][2])
-        
-item = 'cpu'
+        file.write(str(data[j][2]) + '\n')
+    file.close()
+
+def dataget():
+    return data
+
+       
+item = 'gpu'
 
 WalmartScrape(item)
 BestBuyScrape(item)

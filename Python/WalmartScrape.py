@@ -4,7 +4,7 @@ from functions import scrapePrep, pageURL
 
 def WalmartScrape(product):
     WalmartURL = "https://www.walmart.com/search/?query="
-    WalmartID = "product-title-link line-clamp line-clamp-2"
+    WalmartID = "product-title-link line-clamp line-clamp-2 truncate-title"
 
     file = open ('WMurls', 'w')
 
@@ -18,9 +18,9 @@ def WalmartScrape(product):
 
     for line in lines: 
         line = line.strip()
-        if line.find('<a class="product-title-link line-clamp line-clamp-2" data-type="itemTitles" href="') != -1:
-            line = line.replace('</a>, <a class="product-title-link line-clamp line-clamp-2" data-type="itemTitles" href="', 'https://www.walmart.com/')
-            line = line.replace('[<a class="product-title-link line-clamp line-clamp-2" data-type="itemTitles" href="', 'https://www.walmart.com/')
+        if line.find('<a class="product-title-link line-clamp line-clamp-2 truncate-title" data-type="itemTitles" href="') != -1:
+            line = line.replace('</a>, <a class="product-title-link line-clamp line-clamp-2 truncate-title" data-type="itemTitles" href="', 'https://www.walmart.com/')
+            line = line.replace('[<a class="product-title-link line-clamp line-clamp-2 truncate-title" data-type="itemTitles" href="', 'https://www.walmart.com/')
             line = line.replace('" lang="en" tabindex="-1">', '')
             file.write(line + "\n")
     file.close
@@ -41,6 +41,7 @@ def WalmartScrape(product):
         price = price.replace(' ', '')
         price = price.replace(',', '')
         rating = productSoup.find(class_="seo-avg-rating").get_text()
+        site = line
 
         #print(title.strip())
         #print(price.strip())
@@ -48,11 +49,7 @@ def WalmartScrape(product):
 
         file.write(title.strip() + '@')
         file.write(price.strip() + '@')
-        file.write(rating.strip()+ '\n')
+        file.write(rating.strip()+ '@')
+        file.write(site + '\n')
 
     file.close()
-
-
-product = 'gaming mouse'
-
-WalmartScrape(product)
