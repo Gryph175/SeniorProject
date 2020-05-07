@@ -31,13 +31,14 @@ def fileOpening(website):
 
 
 def runSort(sort):
-    fileOpening('BBproducts')
-    fileOpening('WMproducts')
-    #fileOpening('BHproducts')
     
     if sort == 1:
         data.sort(key= prodPrice)
-    if sort == 2:
+    if sort == 2: 
+        data.sort(key= prodPrice, reverse=True)
+    if sort == 3:
+        data.sort(key= prodRating)
+    if sort == 4:
         data.sort(key= prodRating, reverse=True)
 
 def printList():
@@ -66,7 +67,12 @@ app = Flask(__name__)
 def index(): 
     if request.method == "POST":
         prod = request.form["product"]
-        return redirect(url_for("OutPage", product=prod))  
+        clearList()
+        BestBuyScrape(prod)
+        WalmartScrape(prod)
+        fileOpening('BBproducts')
+        fileOpening('WMproducts')
+        return redirect(url_for("OutPage"))  
     else:
         return render_template("index.html")
         
@@ -77,15 +83,24 @@ def index():
     #return jsonify(dataget())
 
 
-@app.route("/<product>")  
-def OutPage(product):
-    clearList()
-    #BestBuyScrape(product)
-    WalmartScrape(product)
-    #fileOpening('BBproducts')
-    fileOpening('WMproducts')
+@app.route("/OutPut", methods=["POST", "GET"])  
+def OutPage():
     data = dataget()
+    if request.method == "POST":
+        sort = request.form["sort"]
+        if sort == '1':
+            runSort(1)
+        if sort == '2':
+            runSort(2)
+        if sort == '3':
+            runSort(3)
+        if sort == '4':
+            runSort(4)
+        return redirect(url_for("OutPage"))
+
     return render_template('OutPut.html', title='Tool-Active', data=data)
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -3,7 +3,7 @@
 {% block title %}
 
 <style>
-    p{
+    form{
         text-align: center;
     }
 </style>
@@ -11,37 +11,10 @@
 
 <form action="#" method="post">
     <div class="input-group mb-3">
-        <p><input type="text" class="form-control" placeholder="Enter Product Here" name="product" aria-describedby="button-addon2"></p>
+        <p><input type="text" class="form-control" class="d-flex justify-content-between" placeholder="Enter Product Here" name="product" aria-describedby="button-addon2"></p>
         <div class="input-group-append">     
-        <p><input class="btn btn-dark" type="submit" value="submit"></input></p>
-        </div>
+        <p><input class="btn btn-dark" class="d-flex justify-content-between" type="submit" value="submit"></input></p>
+    </div>
     </div>
 </form>
-{% endblock %}
-
-{% block content %}
-<div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <div class="input-group-text">
-        <input type="checkbox" aria-label="Checkbox for following text input">
-        BestBuy
-      </div>
-    </div>
-  </div>
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <div class="input-group-text">
-        <input type="checkbox" aria-label="Checkbox for following text input">
-        WalMart
-      </div>
-    </div>
-  </div>
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <div class="input-group-text">
-        <input type="checkbox" aria-label="Checkbox for following text input">
-        B&H Phtot Video
-      </div>
-    </div>
-  </div>
 {% endblock %}
